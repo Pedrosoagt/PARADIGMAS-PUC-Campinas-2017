@@ -42,52 +42,42 @@ void insercao()
         if(escolha == 1)
         {
             contAlunos++;
-
-            printf("introduza o nome do aluno: ");
-            scanf("%s",professores[contAlunos].alunos.nome_alunos);
-            fflush(stdin);
-
             if(contAlunos>LIMITE)
             {
                 printf("Quantidade de alunos excedida \n");
             }
             else
             {
+                printf("introduza o nome do aluno: ");
+                scanf("%s",professores[contAlunos].alunos.nome_alunos);
+                fflush(stdin);
                 printf("Aluno cadastro com sucesso \n");
-            }
-            
+            } 
             
         }
 
         if(escolha == 2)
         {
             contDisciplinas++;
-           
-            printf("introduza o nome da disciplina: ");
-            scanf("%s",professores[contDisciplinas].disciplinas.nome_disciplinas);
-            fflush(stdin);
-
             if(contDisciplinas>LIMITE)
             {
+
                 printf("Quantidade de disciplinas excedida \n");
             }
             else
             {
+                printf("introduza o nome da disciplina: ");
+                scanf("%s",professores[contDisciplinas].disciplinas.nome_disciplinas);
+                fflush(stdin);
+
                 printf("Disciplina cadastrada com sucesso \n");
             }
 
-            
-            
-            
         }
 
         if(escolha == 3)
         {
             contProfessores++;
-
-            printf("introduza o nome do professor\n");
-            scanf("%s", professores[contProfessores].nome_professores);
-            fflush(stdin);
 
             if(contProfessores>LIMITE)
             {
@@ -95,9 +85,12 @@ void insercao()
             }
             else
             {
+                
+                printf("introduza o nome do professor\n");
+                scanf("%s", professores[contProfessores].nome_professores);
+                fflush(stdin);
                 printf("Professor cadastrado com sucesso \n");
             }
-            
              
         }
         
