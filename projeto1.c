@@ -94,7 +94,49 @@ void insercao()
              
         }
         
-    }while(escolha==0);
+    }while(escolha!=0);
+}
+
+
+void listar()
+{
+    int escolha,i;
+    do
+    {
+        printf("Voce deseja listar o que?: \n\n");
+        printf("[1] - Alunos\n");
+        printf("[2] - Disciplinas\n");
+        printf("[3] - Professores\n");
+        printf("[0] - Sair\n");
+        scanf("%d", &escolha);
+
+        if(escolha == 1)
+        {
+           for(i=0; i<=contAlunos; i++)
+           {
+                printf("Aluno: %s \n", professores[i].alunos.nome_alunos);
+           }
+            
+        }
+
+        if(escolha == 2)
+        {
+           for(i=0; i<=contDisciplinas; i++)
+           {
+                printf("Disciplinas: %s \n", professores[i].disciplinas.nome_disciplinas);
+           }
+            
+        }
+
+        if(escolha == 3)
+        {
+           for(i=0; i<=contProfessores; i++)
+           {
+                printf("Professores: %s \n", professores[i].nome_professores);
+           }
+        }
+        
+    }while(escolha!=0);
 }
 
 int main() 
@@ -106,7 +148,7 @@ int main()
  
     do 
      {
-            printf("Projeto 1  \n\n");
+            printf("\n\n");
             printf("[1] - Cadastrar \n");
             printf("[2] - listar \n");
             printf("Escolha a opcao: "); 
@@ -118,6 +160,7 @@ int main()
                     insercao();
                     break; 
                 case  2:
+                    listar();
                     break; 
                 case 3:
                     break; 
