@@ -27,7 +27,6 @@ int contProfessores;
 
 struct cadastrarProfessores professores[LIMITE];
 
-
 void insercao() {
     int escolha;
     do {
@@ -44,46 +43,38 @@ void insercao() {
             contAlunos++;
             if(contAlunos>LIMITE) {
                 printf("Quantidade de alunos excedida \n\n");
-            }
-            else {
+            } else {
                 printf("introduza o nome do aluno: ");
                 scanf("%s",professores[contAlunos].alunos.nome);
                 fflush(stdin);
                 system("clear");
                 printf("Aluno cadastro com sucesso! \n\n");
             } 
-        }
-
-        if(escolha == 2) {
+        } else if(escolha == 2) {
             contDisciplinas++;
             if(contDisciplinas>LIMITE) {
-
                 printf("Quantidade de disciplinas excedida \n\n");
-            }
-            else {
+            } else {
                 printf("introduza o nome da disciplina: ");
                 scanf("%s",professores[contDisciplinas].disciplinas.nome);
                 fflush(stdin);
                 system("clear");\
                 printf("Disciplina cadastrada com sucesso! \n\n");
             }
-        }
-
-        if(escolha == 3) {
+        } else if(escolha == 3) {
             contProfessores++;
-
             if(contProfessores>LIMITE) {
                 printf("Quantidade de professores excedida \n\n");
-            }
-            else {
-                printf("introduza o nome do professor\n");
+            } else {
+                printf("introduza o nome do professor: ");
                 scanf("%s", professores[contProfessores].nome);
                 fflush(stdin);
                 system("clear");
                 printf("Professor cadastrado com sucesso! \n\n");
             }   
+        } else {
+            printf("Opção Inválida! \n");
         }
-        
     } while(escolha!=0);
 }
 
@@ -97,25 +88,23 @@ void listar() {
         printf("[0] - Sair\n");
         printf("Escolha: ");
         scanf("%d", &escolha);
+        system("clear");
 
         if(escolha == 1) {
            for(i=0; i<=contAlunos; i++) {
-                printf("Aluno: %s \n", professores[i].alunos.nome);
+                printf("Lista de Alunos %s \n", professores[i].alunos.nome);
            }
-        }
-
-        if(escolha == 2) {
+        } else if(escolha == 2) {
            for(i=0; i<=contDisciplinas; i++) {
-                printf("Disciplinas: %s \n", professores[i].disciplinas.nome);
+                printf("Lista de Disciplinas %s \n", professores[i].disciplinas.nome);
            }
-        }
-
-        if(escolha == 3) {
+        } else if(escolha == 3) {
            for(i=0; i<=contProfessores; i++) {
-                printf("Professores: %s \n", professores[i].nome);
+                printf("Lista de Professores %s \n", professores[i].nome);
            }
+        } else {
+            printf("Opção inválida! \n");
         }
-        
     } while(escolha!=0);
 }
 
@@ -124,7 +113,6 @@ int main() {
 	contAlunos=0;
 	contDisciplinas=0;
 	contProfessores=0;
- 
     do {
             printf("SISTEMA DE MATRÍCULA\n\n");
             printf("[1] - Cadastrar \n");
