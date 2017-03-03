@@ -1,21 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #define LIMITE 2
 
-struct cadastrarAlunos
-{
-    char nome_alunos[30];
+struct cadastrarAlunos {
+    char nome[30];
+    int ra;
 };
 
-struct cadastrarDisciplinas
-{
-    char nome_disciplinas[30];
+struct cadastrarDisciplinas {
+    char nome[30];
+    int codigo;
 };
 
-struct cadastrarProfessores
-{
-    char nome_professores[30];
+struct cadastrarProfessores {
+    char nome[30];
+    int codigo;
     struct cadastrarAlunos alunos;
     struct cadastrarDisciplinas disciplinas;
 };
@@ -27,135 +28,113 @@ int contProfessores;
 struct cadastrarProfessores professores[LIMITE];
 
 
-void insercao()
-{
+void insercao() {
     int escolha;
-    do
-    {
+    do {
         printf("Voce deseja cadastrar o que?: \n\n");
         printf("[1] - Alunos\n");
         printf("[2] - Disciplinas\n");
         printf("[3] - Professores\n");
         printf("[0] - Sair\n");
+        printf("Escolha: ");
         scanf("%d", &escolha);
+        system("clear");
 
-        if(escolha == 1)
-        {
+        if(escolha == 1) {
             contAlunos++;
-            if(contAlunos>LIMITE)
-            {
-                printf("Quantidade de alunos excedida \n");
+            if(contAlunos>LIMITE) {
+                printf("Quantidade de alunos excedida \n\n");
             }
-            else
-            {
+            else {
                 printf("introduza o nome do aluno: ");
-                scanf("%s",professores[contAlunos].alunos.nome_alunos);
+                scanf("%s",professores[contAlunos].alunos.nome);
                 fflush(stdin);
-                printf("Aluno cadastro com sucesso \n");
+                system("clear");
+                printf("Aluno cadastro com sucesso! \n\n");
             } 
-            
         }
 
-        if(escolha == 2)
-        {
+        if(escolha == 2) {
             contDisciplinas++;
-            if(contDisciplinas>LIMITE)
-            {
+            if(contDisciplinas>LIMITE) {
 
-                printf("Quantidade de disciplinas excedida \n");
+                printf("Quantidade de disciplinas excedida \n\n");
             }
-            else
-            {
+            else {
                 printf("introduza o nome da disciplina: ");
-                scanf("%s",professores[contDisciplinas].disciplinas.nome_disciplinas);
+                scanf("%s",professores[contDisciplinas].disciplinas.nome);
                 fflush(stdin);
-
-                printf("Disciplina cadastrada com sucesso \n");
+                system("clear");\
+                printf("Disciplina cadastrada com sucesso! \n\n");
             }
-
         }
 
-        if(escolha == 3)
-        {
+        if(escolha == 3) {
             contProfessores++;
 
-            if(contProfessores>LIMITE)
-            {
-                printf("Quantidade de professores excedida \n");
+            if(contProfessores>LIMITE) {
+                printf("Quantidade de professores excedida \n\n");
             }
-            else
-            {
-                
+            else {
                 printf("introduza o nome do professor\n");
-                scanf("%s", professores[contProfessores].nome_professores);
+                scanf("%s", professores[contProfessores].nome);
                 fflush(stdin);
-                printf("Professor cadastrado com sucesso \n");
-            }
-             
+                system("clear");
+                printf("Professor cadastrado com sucesso! \n\n");
+            }   
         }
         
-    }while(escolha!=0);
+    } while(escolha!=0);
 }
 
-
-void listar()
-{
+void listar() {
     int escolha,i;
-    do
-    {
+    do {
         printf("Voce deseja listar o que?: \n\n");
         printf("[1] - Alunos\n");
         printf("[2] - Disciplinas\n");
         printf("[3] - Professores\n");
         printf("[0] - Sair\n");
+        printf("Escolha: ");
         scanf("%d", &escolha);
 
-        if(escolha == 1)
-        {
-           for(i=0; i<=contAlunos; i++)
-           {
-                printf("Aluno: %s \n", professores[i].alunos.nome_alunos);
+        if(escolha == 1) {
+           for(i=0; i<=contAlunos; i++) {
+                printf("Aluno: %s \n", professores[i].alunos.nome);
            }
-            
         }
 
-        if(escolha == 2)
-        {
-           for(i=0; i<=contDisciplinas; i++)
-           {
-                printf("Disciplinas: %s \n", professores[i].disciplinas.nome_disciplinas);
+        if(escolha == 2) {
+           for(i=0; i<=contDisciplinas; i++) {
+                printf("Disciplinas: %s \n", professores[i].disciplinas.nome);
            }
-            
         }
 
-        if(escolha == 3)
-        {
-           for(i=0; i<=contProfessores; i++)
-           {
-                printf("Professores: %s \n", professores[i].nome_professores);
+        if(escolha == 3) {
+           for(i=0; i<=contProfessores; i++) {
+                printf("Professores: %s \n", professores[i].nome);
            }
         }
         
-    }while(escolha!=0);
+    } while(escolha!=0);
 }
 
-int main() 
-{ 
+int main() { 
 	int opcao;
 	contAlunos=0;
 	contDisciplinas=0;
 	contProfessores=0;
  
-    do 
-     {
-            printf("\n\n");
+    do {
+            printf("SISTEMA DE MATRÍCULA\n\n");
             printf("[1] - Cadastrar \n");
             printf("[2] - listar \n");
-            printf("Escolha a opcao: "); 
-            scanf("%d", &opcao); 
+            printf("[0] - Sair \n");
+            printf("Escolha: "); 
+            scanf("%d", &opcao);
+            system("clear");
 
-            switch(opcao) 
-            { 
+            switch(opcao) { 
                 case  1: 
                     insercao();
                     break; 
@@ -172,9 +151,8 @@ int main()
                     break;
                 case 7:
                     break;
-            } 
-		 
-	 }while(opcao!=8);
+            }  
+	 } while(opcao!=0);
     getchar();
     exit(0);
-    }
+}
