@@ -1,6 +1,11 @@
 # Prerequisites
 *.d
 
+# Ignore `bin` dir
+bin/
+# or
+*/bin/*
+
 # Object files
 *.o
 *.ko
