@@ -96,9 +96,7 @@ void insercao() {
 				if(disciplinas[i].codigo == codigoDisciplinaMatricula) {
 					disciplinas[i].vetRaAluno[contRA] = raAlunoMatricula;
 					contRA++;
-				} else {
-					printf("não foi possível cadastrar o aluno nesta disciplina");
-				}
+				} 
 			} 
 		} else if(escolha == 5) { //realizar cadastro 
 			printf("Introduza o codigo da disciplina: ");
@@ -215,8 +213,8 @@ int main() {
 			case  2:
 				listar();
 				break; 
-			}  
-		} while(opcao!=0);
+		}  
+	} while(opcao!=0);
 	getchar();
 	exit(0);
 }
