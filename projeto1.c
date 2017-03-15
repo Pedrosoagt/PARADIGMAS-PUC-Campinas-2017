@@ -147,14 +147,14 @@ void insercao() {
             scanf("%d", &codigoDisciplinaBusca);
             
             printf("Matriculados na Disciplina: \n");
-            for(i=0; i<=contDisciplinas; i++) {
-                if(professores[i].codigoProfessor == codigoDisciplinaBusca) {
-                    for(x=0; x<=contRA; x++) {
+            for(i=0; i<=contDisciplinas; i++) { 
+                    for(x=0; x<=contRA; x++) { 
+                        if(professores[i].disciplinas.codigo == codigoDisciplinaBusca) {
                         if((professores[i].disciplinas.vetRaAluno[x] > 0) && (professores[i].disciplinas.vetRaAluno[x] < 800)) 
-                        printf("%d\n", professores[i].alunos.ra);
+                            printf("%d \n", professores[i].disciplinas.vetRaAluno[x]);
+                        }
                   }     
-               }
-           } 
+           }
         }else {
             printf("Opção Inválida! \n");
         }
