@@ -1,8 +1,17 @@
+/*
+ * 1º Projeto desenvolvido durante o curso de Paradigmas de Programação
+ * Linguagem: C
+ *
+ * Integrantes:
+ * Bruno Pedroso RA: 12662136
+ * Murilo Santana RA: 12662185
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define LIMITE 5
+#define LIMITE 10
 
 struct cadastrarAlunos {
 	char nome[30];
@@ -12,8 +21,8 @@ struct cadastrarAlunos {
 struct cadastrarDisciplinas {
 	char nome[30];
 	int codigo;
-	int vetRaAluno[10]; //vincular aluno a disciplina 
-	int vetCodigoProfessor[10];//vincular professor a disciplina
+	int vetRaAluno[10];
+	int vetCodigoProfessor[10];
 };
 
 struct cadastrarProfessores {
@@ -21,13 +30,13 @@ struct cadastrarProfessores {
 	int codigoProfessor;
 };
 
-//assinaturas de funçoes
+//assinaturas dos procedimentos
 void cadAluno();
 void cadProfessor();
 void cadDisciplina();
 void msgLimite();
 
-//contadores  globais usados para cadastrar e par listar
+//contadores globais usados para cadastrar e par listar
 int contAlunos=0;
 int contDisciplinas=0;
 int contProfessores=0;
@@ -51,6 +60,8 @@ void insercao() {
 		printf("[3] - Professores\n");
 		printf("[4] - Realizar Matricula do aluno\n");
 		printf("[5] - Realizar Matricula do professor\n");
+		printf("[6] - Cancelar Matricula Aluno\n");
+		printf("[7] - Cancelar Matricula Professor\n");
 		printf("[0] - Voltar para o menu anterior\n");
 		printf("Escolha: ");
 		scanf("%d", &escolha);
@@ -98,6 +109,40 @@ void insercao() {
 					}
 				}
 				break;
+		        case 6:
+							printf("Digite o ra do aluno: ");
+							scanf("%d", &raAlunoMatricula);
+							printf("Digite o codigo da disciplina: ");
+							scanf("%d", &codigoDisciplinaMatricula);
+				
+							for(i=0; i<=contDisciplinas; i++) {
+								for(j=0; j<=contRA; j++) {
+									if((disciplinas[i].codigo == codigoDisciplinaMatricula) &&
+										 (disciplinas[i].vetRaAluno[j] == raAlunoMatricula)) {
+										disciplinas[i].vetRaAluno[j]=-1;
+										system("clear");
+									} 
+								}
+							}
+							printf("Matricula cancelada com sucesso \n\n");
+							break;
+						case 7:
+							printf("Digite o código do professor: ");
+							scanf("%d", &codigoProfessorMatricula);
+							printf("Digite o codigo da disciplina: ");
+							scanf("%d", &codigoDisciplinaMatricula);
+				
+							for(i=0; i<=contDisciplinas; i++) {
+								for(j=0; j<=contProfessores; j++) {
+									if((disciplinas[i].codigo == codigoDisciplinaMatricula) &&
+										 (disciplinas[i].vetCodigoProfessor[j] == codigoProfessorMatricula)) {
+										disciplinas[i].vetCodigoProfessor[j]=-1;
+										system("clear");
+									} 
+								}
+							}
+							printf("Matricula cancelada com sucesso \n\n");
+							break;
 		}
 	}while(escolha!=0);
 }
@@ -114,23 +159,23 @@ void cadAluno() {
 
   void cadDisciplina() {
   	printf("Digite o nome da disciplina: ");
-	scanf("%s", disciplinas[contDisciplinas].nome);
-	printf("Digite o codigo da disciplina: ");
-	scanf("%d", &disciplinas[contDisciplinas].codigo);
-	system("clear");\
-	printf("Disciplina cadastrada com sucesso! \n\n");
-	contDisciplinas++;
+		scanf("%s", disciplinas[contDisciplinas].nome);
+		printf("Digite o codigo da disciplina: ");
+		scanf("%d", &disciplinas[contDisciplinas].codigo);
+		system("clear");\
+		printf("Disciplina cadastrada com sucesso! \n\n");
+		contDisciplinas++;
   }
 
   void cadProfessor() {
   	printf("Digite o nome do professor: ");
-	scanf("%s", professores[contProfessores].nome);
-	printf("Digite o codigo do professor: ");
-	scanf("%d", &professores[contProfessores].codigoProfessor);
-	fflush(stdin);
-	system("clear");
-	printf("Professor cadastrado com sucesso! \n\n");
-	contProfessores++;
+		scanf("%s", professores[contProfessores].nome);
+		printf("Digite o codigo do professor: ");
+		scanf("%d", &professores[contProfessores].codigoProfessor);
+		fflush(stdin);
+		system("clear");
+		printf("Professor cadastrado com sucesso! \n\n");
+		contProfessores++;
   }
 
 void listar() {
@@ -147,6 +192,7 @@ void listar() {
 		printf("[4] - Listar disciplinas de um aluno\n");
 		printf("[5] - Listar disciplinas de um professor\n");
 		printf("[6] - Alunos matriculados em disciplinas\n");
+		printf("[7] - Lista de professores de uma disciplina\n");
 		printf("[0] - Voltar para o menu anterior\n");
 		printf("Escolha: ");
 		scanf("%d", &escolha);
@@ -154,59 +200,75 @@ void listar() {
 
 		switch(escolha) {
 			case 1: 
-				printf(" lista de Alunos:\n");
+				printf("Lista de Alunos:\n");
 				for(i = 0; i < contAlunos; ++i) {
-					printf("Aluno: %s ra: %d\n", alunos[i].nome, alunos[i].ra);
+					printf("Aluno: %s\nRA: %d\n\n", alunos[i].nome, alunos[i].ra);
 				}
 				break;
 			case 2:
 				printf("Lista de Professores\n");
 				for(i = 0; i < contDisciplinas; i++) {
-					printf("Disciplina: %s código: %d\n", disciplinas[i].nome, disciplinas[i].codigo);
+					printf("Disciplina: %s\nCódigo: %d\n\n", disciplinas[i].nome, disciplinas[i].codigo);
 				}
 				break;
 			case 3:
 				printf("Lista de Professores\n");
 				for(i = 0; i < contProfessores; i++) {
-					printf("Professor: %s código: %d\n", professores[i].nome, professores[i].codigoProfessor);
+					printf("Professor: %s\nCódigo: %d\n\n", professores[i].nome, professores[i].codigoProfessor);
 				}
 				break;
-		}
-		if(escolha == 4) {   //lista disciplinas de um aluno
-			printf("RA do aluno que deseja buscar: ");
-			scanf("%d", &raAlunoBusca);
+			case 4:
+				printf("RA do aluno que deseja buscar: ");
+				scanf("%d", &raAlunoBusca);
 
-			printf("Disciplinas: \n");
-			for(i=0; i<=contDisciplinas; i++) {
-				for(j=0; j<=contRA; j++) {
-					if(disciplinas[i].vetRaAluno[j] == raAlunoBusca) 
-						printf("%s\n",disciplinas[i].nome);
-				}
-			}
-		} else if(escolha == 5) {   //lista disciplinas de um professor
-			printf("RA do professor que deseja buscar: ");
-			scanf("%d", &codigoProfessorBusca);
-
-			printf("Disciplinas de um professor: \n");
-			for(i=0; i<=contDisciplinas; i++) {
-				for(j=0; j<=contCodigo; j++) {
-					if(disciplinas[i].vetCodigoProfessor[j] == codigoProfessorBusca) 
-						printf("%s\n",disciplinas[i].nome);
-				}
-			}
-		} else if(escolha == 6) {   //alunos que estão matriculados em uma disciplina
-			printf("Digite o codigo da disciplina: ");
-			scanf("%d", &codigoDisciplinaBusca);
-
-			printf("Matriculados na Disciplina: \n");
-			for(i=0; i<=contDisciplinas; i++) { 
-				for(x=0; x<=contRA; x++) { 
-					if(disciplinas[i].codigo == codigoDisciplinaBusca) {
-						if((disciplinas[i].vetRaAluno[x] > 0) && (disciplinas[i].vetRaAluno[x] < 10)) 
-							printf("%s \n", alunos[x].nome);
+				printf("Disciplinas: \n");
+				for(i=0; i<=contDisciplinas; i++) {
+					for(j=0; j<=contRA; j++) {
+						if(disciplinas[i].vetRaAluno[j] == raAlunoBusca) 
+							printf("%s\n",disciplinas[i].nome);
 					}
-				}     
-			}
+				}
+				break;
+			case 5:
+				printf("RA do professor que deseja buscar: ");
+				scanf("%d", &codigoProfessorBusca);
+
+				printf("Disciplinas de um professor: \n");
+				for(i=0; i<=contDisciplinas; i++) {
+					for(j=0; j<=contCodigo; j++) {
+						if(disciplinas[i].vetCodigoProfessor[j] == codigoProfessorBusca) 
+							printf("%s\n",disciplinas[i].nome);
+					}
+				}
+				break;
+			case 6:
+				printf("Digite o codigo da disciplina: ");
+				scanf("%d", &codigoDisciplinaBusca);
+
+				printf("Matriculados na Disciplina: \n");
+				for(i=0; i<=contDisciplinas; i++) { 
+					for(x=0; x<=contRA; x++) { 
+						if(disciplinas[i].codigo == codigoDisciplinaBusca) {
+							if((disciplinas[i].vetRaAluno[x] > 0) && (disciplinas[i].vetRaAluno[x] < 10)) 
+								printf("%s \n", alunos[x].nome);
+						}
+					}     
+				}
+				break;
+			case 7:
+				printf("Digite o codigo da disciplina: ");
+				scanf("%d", &codigoDisciplinaBusca);
+
+				printf("Professores desta Disciplina: \n");
+				for(i=0; i<=contDisciplinas; i++) { 
+					for(x=0; x<=contRA; x++) { 
+						if(disciplinas[i].codigo == codigoDisciplinaBusca) {
+							if((disciplinas[i].vetCodigoProfessor[x] > 0) && (disciplinas[i].vetCodigoProfessor[x] < 10)) 
+								printf("%s \n", professores[x].nome);
+						}
+					}     
+				}
+				break;
 		}
 	} while(escolha!=0);
 }
