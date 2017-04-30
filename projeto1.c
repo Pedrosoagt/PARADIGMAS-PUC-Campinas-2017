@@ -1,8 +1,17 @@
+/*
+ * 1º Projeto desenvolvido durante o curso de Paradigmas de Programação
+ * Linguagem: C
+ *
+ * Integrantes:
+ * Bruno Pedroso RA: 12662136
+ * Murilo Santana RA: 12662185
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define LIMITE 2
+#define LIMITE 10
 
 struct cadastrarAlunos {
 	char nome[30];
@@ -12,15 +21,22 @@ struct cadastrarAlunos {
 struct cadastrarDisciplinas {
 	char nome[30];
 	int codigo;
-	int vetRaAluno[1]; //vincular aluno a disciplina 
+	int vetRaAluno[10];
+	int vetCodigoProfessor[10];
 };
 
 struct cadastrarProfessores {
 	char nome[30];
 	int codigoProfessor;
-	int vetCodigoProfessor[20];//vincular professor a disciplina
 };
 
+//assinaturas dos procedimentos
+void cadAluno();
+void cadProfessor();
+void cadDisciplina();
+void msgLimite();
+
+//contadores globais usados para cadastrar e par listar
 int contAlunos=0;
 int contDisciplinas=0;
 int contProfessores=0;
@@ -44,78 +60,123 @@ void insercao() {
 		printf("[3] - Professores\n");
 		printf("[4] - Realizar Matricula do aluno\n");
 		printf("[5] - Realizar Matricula do professor\n");
+		printf("[6] - Cancelar Matricula Aluno\n");
+		printf("[7] - Cancelar Matricula Professor\n");
 		printf("[0] - Voltar para o menu anterior\n");
 		printf("Escolha: ");
 		scanf("%d", &escolha);
 		system("clear");
 
-		if(escolha == 1) {
-			contAlunos++;
-			if(contAlunos>LIMITE) {
-				printf("Quantidade de alunos excedida \n\n");
-			} else {
-				printf("introduza o nome do aluno: ");
-				scanf("%s",alunos[contAlunos].nome);
-				printf("Introduza o RA: ");
-				scanf("%d", &alunos[contAlunos].ra);
-				system("clear");
-				printf("Aluno cadastro com sucesso! \n\n");
-			} 
-		} else if(escolha == 2) {
-			contDisciplinas++;	
-			if(contDisciplinas>LIMITE) {
-				printf("Quantidade de disciplinas excedida \n\n");
-			} else {
-				printf("introduza o nome da disciplina: ");
-				scanf("%s", disciplinas[contDisciplinas].nome);
-				printf("Introduza o codigo da disciplina: ");
-				scanf("%d", &disciplinas[contDisciplinas].codigo);
-				system("clear");\
-				printf("Disciplina cadastrada com sucesso! \n\n");
-			}
-		} else if(escolha == 3) {
-			contProfessores++;
-			if(contProfessores>LIMITE) {
-			printf("Quantidade de professores excedida \n\n");
-			} else {
-				printf("introduza o nome do professor: ");
-				scanf("%s", professores[contProfessores].nome);
-				printf("Introduza o codigo do professor: ");
-				scanf("%d", &professores[contProfessores].codigoProfessor);
-				fflush(stdin);
-				system("clear");
-				printf("Professor cadastrado com sucesso! \n\n");
-			}   
-		} else if(escolha == 4) {
-			printf("Introduza o codigo da disciplina: ");
-			scanf("%d", &codigoDisciplinaMatricula);
-			printf("Introduza o ra do aluno: ");
-			scanf("%d", &raAlunoMatricula);
+		switch(escolha) {
+			case 1:
+				if(contAlunos >= LIMITE) {
+					msgLimite();
+				} else { cadAluno(); }
+				break;
+			case 2:
+				if(contDisciplinas >= LIMITE) {
+					msgLimite();
+				} else { cadDisciplina(); } 
+				break;
+			case 3:
+				if(contProfessores >= LIMITE) {
+					msgLimite();
+				} else { cadProfessor(); }
+				break;
+			case 4:
+				printf("Digite o codigo da disciplina: ");
+				scanf("%d", &codigoDisciplinaMatricula);
+				printf("Digite o ra do aluno: ");
+				scanf("%d", &raAlunoMatricula);
 
-			for(i=1; i<=contDisciplinas; i++) {
-				if(disciplinas[i].codigo == codigoDisciplinaMatricula) {
-					disciplinas[i].vetRaAluno[contRA] = raAlunoMatricula;
-					contRA++;
-				} 
-			} 
-		} else if(escolha == 5) { //realizar cadastro 
-			printf("Introduza o codigo da disciplina: ");
-			scanf("%d", &codigoDisciplinaMatricula);
-
-			printf("Introduza o codigo do professor: ");
-			scanf("%d", &codigoProfessorMatricula);
-
-			for(i=1; i<=contDisciplinas; i++) {
-				if(professores[i].codigoProfessor == codigoProfessorMatricula) {
-					professores[i].vetCodigoProfessor[contCodigo] = codigoProfessorMatricula;
-					contCodigo++;
+				for(i=0; i < contDisciplinas; i++) {
+					if(disciplinas[i].codigo == codigoDisciplinaMatricula) {
+						disciplinas[i].vetRaAluno[contRA] = raAlunoMatricula;
+						contRA++;
+					} 
 				}
-			} 
-		} else {
-			printf("Opção Inválida! \n");
+				break;
+			case 5:
+				printf("Digite o codigo da disciplina: ");
+				scanf("%d", &codigoDisciplinaMatricula);
+				printf("Digite o codigo do professor: ");
+				scanf("%d", &codigoProfessorMatricula);
+
+				for(i=0; i < contDisciplinas; i++) {
+					if(disciplinas[i].codigo == codigoDisciplinaMatricula) {
+						disciplinas[i].vetCodigoProfessor[contCodigo] = codigoProfessorMatricula;
+						contCodigo++;
+					}
+				}
+				break;
+		        case 6:
+							printf("Digite o ra do aluno: ");
+							scanf("%d", &raAlunoMatricula);
+							printf("Digite o codigo da disciplina: ");
+							scanf("%d", &codigoDisciplinaMatricula);
+				
+							for(i=0; i<=contDisciplinas; i++) {
+								for(j=0; j<=contRA; j++) {
+									if((disciplinas[i].codigo == codigoDisciplinaMatricula) &&
+										 (disciplinas[i].vetRaAluno[j] == raAlunoMatricula)) {
+										disciplinas[i].vetRaAluno[j]=-1;
+										system("clear");
+									} 
+								}
+							}
+							printf("Matricula cancelada com sucesso \n\n");
+							break;
+						case 7:
+							printf("Digite o código do professor: ");
+							scanf("%d", &codigoProfessorMatricula);
+							printf("Digite o codigo da disciplina: ");
+							scanf("%d", &codigoDisciplinaMatricula);
+				
+							for(i=0; i<=contDisciplinas; i++) {
+								for(j=0; j<=contProfessores; j++) {
+									if((disciplinas[i].codigo == codigoDisciplinaMatricula) &&
+										 (disciplinas[i].vetCodigoProfessor[j] == codigoProfessorMatricula)) {
+										disciplinas[i].vetCodigoProfessor[j]=-1;
+										system("clear");
+									} 
+								}
+							}
+							printf("Matricula cancelada com sucesso \n\n");
+							break;
 		}
 	}while(escolha!=0);
 }
+
+void cadAluno() {
+	printf("Digite o nome do aluno: ");
+	scanf("%s", alunos[contAlunos].nome);
+	printf("Digite o RA: ");
+	scanf("%d", &alunos[contAlunos].ra);
+	system("clear");
+	printf("Aluno cadastro com sucesso! \n\n");
+	contAlunos++;
+}
+
+  void cadDisciplina() {
+  	printf("Digite o nome da disciplina: ");
+		scanf("%s", disciplinas[contDisciplinas].nome);
+		printf("Digite o codigo da disciplina: ");
+		scanf("%d", &disciplinas[contDisciplinas].codigo);
+		system("clear");\
+		printf("Disciplina cadastrada com sucesso! \n\n");
+		contDisciplinas++;
+  }
+
+  void cadProfessor() {
+  	printf("Digite o nome do professor: ");
+		scanf("%s", professores[contProfessores].nome);
+		printf("Digite o codigo do professor: ");
+		scanf("%d", &professores[contProfessores].codigoProfessor);
+		fflush(stdin);
+		system("clear");
+		printf("Professor cadastrado com sucesso! \n\n");
+		contProfessores++;
+  }
 
 void listar() {
 	int escolha,i,x,j;
@@ -131,65 +192,89 @@ void listar() {
 		printf("[4] - Listar disciplinas de um aluno\n");
 		printf("[5] - Listar disciplinas de um professor\n");
 		printf("[6] - Alunos matriculados em disciplinas\n");
+		printf("[7] - Lista de professores de uma disciplina\n");
 		printf("[0] - Voltar para o menu anterior\n");
 		printf("Escolha: ");
 		scanf("%d", &escolha);
 		system("clear");
 
-		if(escolha == 1) {
-			printf("Lista de Alunos\n");
-			for(i=1; i<=contAlunos; i++) {
-				printf("%s ra: %d\n", alunos[i].nome, alunos[i].ra);
-			}
-		} else if(escolha == 2) {
-			printf("Lista de Disciplinas\n");
-			for(i=1; i<=contDisciplinas; i++) {
-				printf("%s codigo: %d \n", disciplinas[i].nome, disciplinas[i].codigo);
-			}
-		} else if(escolha == 3) {
-			printf("Lista de Professores\n");
-			for(i=1; i<=contProfessores; i++) {
-				printf("%s codigo: %d \n", professores[i].nome, professores[i].codigoProfessor);
-			}
-		} else if(escolha == 4) {   //lista disciplinas de um aluno
-			printf("RA do aluno que deseja buscar: ");
-			scanf("%d", &raAlunoBusca);
-
-			printf("Disciplinas: \n");
-			for(i=0; i<=contDisciplinas; i++) {
-				for(j=0; j<=contRA; j++) {
-					if(disciplinas[i].vetRaAluno[j] == raAlunoBusca) 
-						printf("%s\n",disciplinas[i].nome);
+		switch(escolha) {
+			case 1: 
+				printf("Lista de Alunos:\n");
+				for(i = 0; i < contAlunos; ++i) {
+					printf("Aluno: %s\nRA: %d\n\n", alunos[i].nome, alunos[i].ra);
 				}
-			}
-		} else if(escolha == 5) {   //lista disciplinas de um professor
-			printf("RA do professor que deseja buscar: ");
-			scanf("%d", &codigoProfessorBusca);
-
-			printf("Disciplinas de um professor: \n");
-			for(i=0; i<=contProfessores; i++) {
-				for(j=0; j<=contCodigo; j++) {
-					if(professores[i].vetCodigoProfessor[j] == codigoProfessorBusca) 
-						printf("%s\n",disciplinas[i].nome);
+				break;
+			case 2:
+				printf("Lista de Professores\n");
+				for(i = 0; i < contDisciplinas; i++) {
+					printf("Disciplina: %s\nCódigo: %d\n\n", disciplinas[i].nome, disciplinas[i].codigo);
 				}
-			}
-		} else if(escolha == 6) {   //alunos que estão matriculados em uma disciplina
-			printf("Introduza o codigo da disciplina: ");
-			scanf("%d", &codigoDisciplinaBusca);
+				break;
+			case 3:
+				printf("Lista de Professores\n");
+				for(i = 0; i < contProfessores; i++) {
+					printf("Professor: %s\nCódigo: %d\n\n", professores[i].nome, professores[i].codigoProfessor);
+				}
+				break;
+			case 4:
+				printf("RA do aluno que deseja buscar: ");
+				scanf("%d", &raAlunoBusca);
 
-			printf("Matriculados na Disciplina: \n");
-			for(i=0; i<=contDisciplinas; i++) { 
-				for(x=0; x<=contRA; x++) { 
-					if(disciplinas[i].codigo == codigoDisciplinaBusca) {
-						if((disciplinas[i].vetRaAluno[x] > 0) && (disciplinas[i].vetRaAluno[x] < 800)) 
-							printf("%d \n", disciplinas[i].vetRaAluno[x]);
+				printf("Disciplinas: \n");
+				for(i=0; i<=contDisciplinas; i++) {
+					for(j=0; j<=contRA; j++) {
+						if(disciplinas[i].vetRaAluno[j] == raAlunoBusca) 
+							printf("%s\n",disciplinas[i].nome);
 					}
-				}     
-			}
-		} else {
-			printf("Opção inválida! \n");
+				}
+				break;
+			case 5:
+				printf("RA do professor que deseja buscar: ");
+				scanf("%d", &codigoProfessorBusca);
+
+				printf("Disciplinas de um professor: \n");
+				for(i=0; i<=contDisciplinas; i++) {
+					for(j=0; j<=contCodigo; j++) {
+						if(disciplinas[i].vetCodigoProfessor[j] == codigoProfessorBusca) 
+							printf("%s\n",disciplinas[i].nome);
+					}
+				}
+				break;
+			case 6:
+				printf("Digite o codigo da disciplina: ");
+				scanf("%d", &codigoDisciplinaBusca);
+
+				printf("Matriculados na Disciplina: \n");
+				for(i=0; i<=contDisciplinas; i++) { 
+					for(x=0; x<=contRA; x++) { 
+						if(disciplinas[i].codigo == codigoDisciplinaBusca) {
+							if((disciplinas[i].vetRaAluno[x] > 0) && (disciplinas[i].vetRaAluno[x] < 10)) 
+								printf("%s \n", alunos[x].nome);
+						}
+					}     
+				}
+				break;
+			case 7:
+				printf("Digite o codigo da disciplina: ");
+				scanf("%d", &codigoDisciplinaBusca);
+
+				printf("Professores desta Disciplina: \n");
+				for(i=0; i<=contDisciplinas; i++) { 
+					for(x=0; x<=contRA; x++) { 
+						if(disciplinas[i].codigo == codigoDisciplinaBusca) {
+							if((disciplinas[i].vetCodigoProfessor[x] > 0) && (disciplinas[i].vetCodigoProfessor[x] < 10)) 
+								printf("%s \n", professores[x].nome);
+						}
+					}     
+				}
+				break;
 		}
 	} while(escolha!=0);
+}
+
+void msgLimite(){
+	printf("Você já tem 10 cadastros\n");
 }
 
 int main() { 
