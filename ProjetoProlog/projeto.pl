@@ -17,8 +17,8 @@
 
 //voo(origem, destino)
 
-	vôo(saopaulo,madrid,gl1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	vôo(saopaulo,mexico,gl2,9:25,(seguinte,23:25),0,gol,[sex,dom]).
+	voo(saopaulo,madrid,gl1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(saopaulo,mexico,gl2,9:25,(seguinte,23:25),0,gol,[sex,dom]).
 
 //lista de voos disponíveis. 
 	voo(saopaulo, mexico).
