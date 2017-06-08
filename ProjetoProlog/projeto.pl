@@ -8,6 +8,8 @@
 %partida de sao_paulo
 	voo(sao_paulo, mexico,gl1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 	voo(sao_paulo, nova_york,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, nova_york,gl2,7:10,(mesmo,20:25),0,gol,[seg,qua,sab]).
+	voo(sao_paulo, nova_york,gl2,7:10,(mesmo,20:25),3,gol,[seg,qua,sab]).
 	voo(sao_paulo, londres,gl3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 	voo(sao_paulo, lisboa,gl4,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 	voo(sao_paulo, madrid,gl5,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
@@ -60,23 +62,33 @@
 	voo(lisboa, londres,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %VoosDiretos
-%@paramentros (origem, destino, companhia, dia da semana, horário)
+%@params (origem, destino, companhia, dia da semana, horário)
 
-	voodireto(X, Y):- voo(X, Y,_,_,(_,_),0,_,[_,_,_]).
+	voodireto(O, D, E, W, H):- 
+		voo(O, D,_,H,(_,_),0,E,[W,_,_]); 
+		voo(O, D,_,H,(_,_),0,E,[_,W,_]); 
+		voo(O, D,_,H,(_,_),0,E,[_,_,W]).
 
 %conexoes
 %@%params (origem, destino)
 %pergunta roteiro(Origem, Destino, ListaVoos).
 	
-	conexoes(X, Y):- voodireto(X,H), voodireto(H, Y).
+	conexoes(X, Y):- voodireto(X,H), voodireto(H, Y), diferente(X, H), diferente(X, Y), diferente(Y, H).
+	diferente(X, Y):- X \= Y.
 	
 %voo direto  dia da semana
 %pergunta filtra_voo_dia_semana(Origem,Destino, DiaSemana, HorarioSaida,HorarioChegada,Companhia).
-	voo_direto_dia_semana(X, Y, [X]):- voo(X,Y,_,_,(_,_),0,_,[X]).
+	
+	filtra_voo_dia_semana(O, D, W, S, C, E):- 
+		voo(O, D,_,S,(_,C),0,E,[W,_,_]); 
+		voo(O, D,_,S,(_,C),0,E,[_,W,_]); 
+		voo(O, D,_,S,(_,C),0,E,[_,_,W]).
 
-%voo direto menor duracao
+%vDo direto menor duracao
 %@params (origem, destino, dia da semana)
 %pergunta menorDuracao(Origem,Destino,dia,HorarioSaida,HorarioChegada,Companhia).
+	
+
 
 %teste de print 
 	show_records([]).
