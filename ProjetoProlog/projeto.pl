@@ -7,9 +7,9 @@
 
 %partida de sao_paulo
 	voo(sao_paulo, mexico,gl1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(sao_paulo, nova_york,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, nova_york,gl2,8:25,(mesmo,20:25),0,gol,[qua]).
 	voo(sao_paulo, nova_york,gl2,7:10,(mesmo,20:25),0,gol,[seg,qua,sab]).
-	voo(sao_paulo, nova_york,gl2,8:25,(seguinte,20:24),0,gol,[seg,qua,sab]).
+	voo(sao_paulo, nova_york,gl2,8:25,(seguinte,20:24),0,gol,[seg,qua]).
 	voo(sao_paulo, nova_york,gl2,7:10,(mesmo,20:25),3,gol,[seg,qua,sab]).
 	voo(sao_paulo, londres,gl3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 	voo(sao_paulo, lisboa,gl4,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
@@ -65,10 +65,9 @@
 %VoosDiretos
 %@params (origem, destino, companhia, dia da semana, horário)
 
-	voodireto(O, D, E, W, H):- 
-		voo(O, D,_,H,(_,_),0,E,[W,_,_]);	 
-		voo(O, D,_,H,(_,_),0,E,[_,W,_]);	
-		voo(O, D,_,H,(_,_),0,E,[_,_,W]).
+	voodireto(O, D, E, W, H):-
+		voo(O, D,_,H,(_,_),0,E,T),
+		contem(T, W).
 
 %conexoes
 %@%params (origem, destino)
@@ -79,11 +78,10 @@
 	
 %voos direto  dia da semana
 %pergunta filtra_voo_dia_semana(Origem,Destino, DiaSemana, HorarioSaida,HorarioChegada,Companhia).
-	
-	filtra_voo_dia_semana(O, D, W, S, C, E):- 
-		voo(O, D,_,S,(_,C),0,E,[W,_,_]); 
-		voo(O, D,_,S,(_,C),0,E,[_,W,_]); 	
-		voo(O, D,_,S,(_,C),0,E,[_,_,W]).
+
+	filtra_voo_dia_semana(O, D, W, S, C, E):-
+		voo(O, D,_,S,(_,C),0,E,T),
+		contem(T, W).
 
 %voos direto menor duracao
 %@params (origem, destino, dia da semana)
