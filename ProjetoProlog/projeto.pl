@@ -8,62 +8,61 @@
 %Voos
 %@params (origem,destino,códigoVoo,horário,(chegadadia,horário),numConexoes,companhia,[dias que o voo acontece]).
 %partida de sao_paulo
-	voo(sao_paulo, mexico,gl1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(sao_paulo, nova_york,gl2,8:25,(mesmo,20:25),0,gol,[qua]).
-	voo(sao_paulo, nova_york,gl2,7:10,(mesmo,20:25),0,gol,[seg,qua,sab]).
-	voo(sao_paulo, nova_york,bla,8:30,(mesmo,20:25),0,gol,[seg,qua]).
-	voo(sao_paulo, nova_york,gl2,7:10,(mesmo,20:25),3,gol,[seg,qua,sab]).
-	voo(sao_paulo, londres,gl3,8:25,(mesmo,12:25),0,gol,[qua,sex,dom]).
-	voo(sao_paulo, lisboa,gl4,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(sao_paulo, madrid,gl5,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(sao_paulo, paris,gl6,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, mexico,sp1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, nova_york,sp2,7:25,(mesmo,20:25),0,gol,[ter,qua]).
+	voo(sao_paulo, nova_york,sp3,7:10,(mesmo,20:25),0,gol,[seg,qua,sab]).
+	voo(sao_paulo, nova_york,sp4,8:30,(mesmo,19:25),0,gol,[ter,qua]).
+	voo(sao_paulo, nova_york,sp5,7:10,(mesmo,20:25),3,gol,[seg,qua,sab]).
+	voo(sao_paulo, londres,sp6,8:25,(mesmo,12:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, lisboa,sp7,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, madrid,sp8,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(sao_paulo, paris,sp9,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas do mexico
-	voo(mexico, nova_york,gl7,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(mexico, madrid,gl8,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(mexico, sao_paulo,gl1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(mexico, nova_york,mx1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(mexico, madrid,mx2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(mexico, sao_paulo,mx3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de nova_york
-	voo(nova_york, londres,gl9,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(nova_york, sao_paulo,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(nova_york, mexico,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(nova_york, londres,ny1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(nova_york, sao_paulo,ny2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(nova_york, mexico,ny3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de londres
-	voo(londres, lisboa,gl10,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(londres, paris,gl11,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(londres, estocolmo,gl12,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(londres, sao_paulo,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(londres, nova_york,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(londres, lisboa,ld1,8:25,(mesmo,9:25),0,gol,[qua,sex,dom]).
+	voo(londres, paris,ld2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(londres, estocolmo,ld3,8:25,(mesmo,8:26),0,gol,[qua,sex,dom]).
+	voo(londres, sao_paulo,ld4,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(londres, nova_york,ld5,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de madrid
-	voo(madrid, paris,gl13,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(madrid, roma,gl14,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(madrid, frankfurt,gl15,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(madrid, sao_paulo,gl15,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(madrid, mexico,gl15,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(madrid, paris,md1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(madrid, roma,md2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(madrid, frankfurt,md3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(madrid, sao_paulo,md4,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(madrid, mexico,md5,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de frankfurt
-	voo(frankfurt, estocolmo,gl16,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(frankfurt, roma,gl17,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(frankfurt, madrid,gl17,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(frankfurt, estocolmo,fkt1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(frankfurt, roma,fkt2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(frankfurt, madrid,fkt3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de estocolmo
-	voo(estocolmo, londres,gl12,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(estocolmo, frankfurt,gl12,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(estocolmo, londres,etcm1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(estocolmo, frankfurt,etcm2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de roma
-	voo(roma, frankfurt, gl17,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(roma, madrid, gl17,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(roma, frankfurt, rm1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(roma, madrid, rm2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de paris
-	voo(paris, sao_paulo,gl6,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(paris, londres,gl6,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(paris, madrid,gl6,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(paris, sao_paulo,pr1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(paris, londres,pr2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(paris, madrid,pr3,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 
 %partidas de lisboa
-	voo(lisboa, sao_paulo,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-	voo(lisboa, londres,gl2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
-
+	voo(lisboa, sao_paulo,lb1,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
+	voo(lisboa, londres,lb2,8:25,(mesmo,20:25),0,gol,[qua,sex,dom]).
 %VoosDiretos
 %pergunta voodireto(origem, destino, companhia, dia da semana, horário)
 
@@ -76,12 +75,12 @@
 
 	roteiro(O,D,L):-
 		\+ aux(O,D),
-		voo(O,X,C1,_,_,_,_,_),
-		voo(X,D,C2,_,_,_,_,_),
+		voo(O,X,C1,_,(_,_),_,_,_),
+		voo(X,D,C2,_,(_,_),_,_,_),
 		conc([C1],[C2],L).
 
 	aux(O,D):-
-	voo(O,D,_,_,_,_,_,_),!.
+	voo(O,D,_,_,(_,_),_,_,_),!.
 
 %voos direto  dia da semana
 %pergunta filtra_voo_dia_semana(Origem,Destino, DiaSemana, HorarioSaida,HorarioChegada,Companhia).
@@ -109,14 +108,14 @@
 %pergunta roteiro(Origem, Destino, DiaSaída, HoraSaida, Duração).
 
 	roteiro(O, D, DiaS, Hora:Min, Duracao):-
-		menorDuracao(O, D,_,_,_,_),
-		voo_dirireto(O,D,_,DiaS,Hora:Min,HoraC:MinC,DiaC),
+		voo_direto(O,D,_,DiaS,Hora:Min,HoraC:MinC,DiaC),
+		menorDuracao(O,D,_,_,_,_),
 		somaHora(Hora,Min,DuracaoS),
 		somaHora(HoraC,MinC,DuracaoC),
 		somaDia(DiaC,DuracaoC,DuracaoC2),
 		numero(DuracaoC2,DuracaoS,Duracao),!.
 
-	voo_dirireto(O, D, E, W, Hora:Min, HoraC:MinC, DiaC):-
+	voo_direto(O, D, E, W, Hora:Min, HoraC:MinC, DiaC):-
 		voo(O,D,_,Hora:Min,(DiaC,HoraC:MinC),0,E,T),
 		membro(T, W).
 
